@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import hashlib
 import os
 import shutil
@@ -13,7 +15,6 @@ from torch import nn
 
 from modules.data_hub import DATA_HUB
 from modules.plot_fn import set_axes, use_svg_display
-
 
 
 class Timer:
@@ -107,7 +108,7 @@ def download(name, cache_dir=os.path.join('..', 'data')):
     """下载一个DATA_HUB中的文件，返回本地文件名
 
     Defined in :numref:`sec_kaggle_house`"""
-    assert name in DATA_HUB, f"{name} 不存在于 {DATA_HUB}"
+    assert name in DATA_HUB, (f"{name} 不存在于 {DATA_HUB}")
     url, sha1_hash = DATA_HUB[name]
     os.makedirs(cache_dir, exist_ok=True)
     fname = os.path.join(cache_dir, url.split('/')[-1])
