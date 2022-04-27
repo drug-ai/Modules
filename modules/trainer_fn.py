@@ -11,12 +11,6 @@ from modules.utils_fn import Accumulator, Animator, Timer, try_all_gpus, try_gpu
 from modules.operator import *
 
 
-def squared_loss(y_hat, y):
-    """均方损失
-
-    Defined in :numref:`sec_linear_scratch`"""
-    return (y_hat - reshape(y, y_hat.shape)) ** 2 / 2
-
 
 def sgd(params, lr, batch_size):
     """小批量随机梯度下降
@@ -69,7 +63,7 @@ def train_epoch_cls(net, train_iter, loss, updater):
     return metric[0] / metric[2], metric[1] / metric[2]
 
 
-def train_ch3(net, train_iter, test_iter, loss, num_epochs, updater):
+def train_cls(net, train_iter, test_iter, loss, num_epochs, updater):
     """训练模型（定义见第3章）
 
     Defined in :numref:`sec_softmax_scratch`"""

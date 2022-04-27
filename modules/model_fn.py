@@ -1,9 +1,9 @@
 import math
-from transform_fn import masked_softmax
 import torch
 from torch import nn
 from torch.nn import functional as F
 
+from modules.transform_fn import masked_softmax
 from modules.operator import *
 
 
@@ -12,6 +12,18 @@ def linreg(X, w, b):
 
     Defined in :numref:`sec_linear_scratch`"""
     return matmul(X, w) + b
+
+
+def dropout_layer(X, dropout):
+    assert 0 <= dropout <= 1
+    # 在本情况中，所有元素都被丢弃
+    if dropout == 1:
+        return torch.zeros_like(X)
+    # 在本情况中，所有元素都被保留
+    if dropout == 0:
+        return X
+    mask = (torch.rand(X.shape) > dropout).float()
+    return mask * X / (1.0 - dropout)
 
 
 class Residual(nn.Module):

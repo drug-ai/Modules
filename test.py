@@ -1,6 +1,6 @@
-from operator import *
-from modules.utils_fn import try_all_gpus
+from modules.utils_fn import download_all
+from modules.data_hub import DATA_HUB
 
-device = try_all_gpus()
-print(device)
+
+download_all()
 

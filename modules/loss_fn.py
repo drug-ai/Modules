@@ -3,6 +3,16 @@ from modules.utils_fn import Accumulator
 from modules.operator import *
 
 
+def l2_penalty(w):
+    return torch.sum(w.pow(2)) / 2
+
+
+def squared_loss(y_hat, y):
+    """均方损失
+
+    Defined in :numref:`sec_linear_scratch`"""
+    return (y_hat - reshape(y, y_hat.shape)) ** 2 / 2
+
 def evaluate_loss(net, data_iter, loss):
     """评估给定数据集上模型的损失
 
